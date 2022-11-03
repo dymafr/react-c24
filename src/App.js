@@ -1,6 +1,7 @@
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import FilterTodo from './components/FilterTodo';
+import TodoData from './components/TodoData';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         </h1>
         <AddTodo />
         <TodoList />
+        <TodoData />
       </div>
     </div>
   );
