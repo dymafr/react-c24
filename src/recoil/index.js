@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 
 export const todosState = atom({
   key: 'todosState',
@@ -45,4 +45,14 @@ export const selectTodosData = selector({
       totalDonePourcentage,
     };
   },
+});
+
+export const selectTodoDetails = selectorFamily({
+  key: 'selectTodoDetails',
+  get:
+    (_id) =>
+    ({ get }) => {
+      const todos = get(todosState);
+      return _id ? todos.find((t) => t._id === _id) : null;
+    },
 });

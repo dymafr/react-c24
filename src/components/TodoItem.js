@@ -2,7 +2,7 @@ import { useSetRecoilState } from 'recoil';
 import { todosState } from '../recoil';
 import { useState } from 'react';
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, onClick }) {
   const setTodosState = useSetRecoilState(todosState);
   const [inputValue, setInputValue] = useState(todo.content);
 
@@ -65,6 +65,9 @@ function TodoItem({ todo }) {
             className="btn btn-secondary mr-15"
           >
             Modifier
+          </button>
+          <button onClick={onClick} className="btn btn-primary">
+            Détails
           </button>
         </>
       )}
