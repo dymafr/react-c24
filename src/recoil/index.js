@@ -3,6 +3,34 @@ import { atom, selector, selectorFamily } from 'recoil';
 export const todosState = atom({
   key: 'todosState',
   default: [],
+  effects: [
+    (options) => {
+      console.log(options);
+      const { getLoadable, node, onSet, resetSelf, setSelf } = options;
+      const { contents } = getLoadable(filterState);
+      console.log(contents);
+      console.log(node);
+      console.log(getLoadable(node));
+      onSet((newValue, oldValue) => {
+        console.log('new value : ', newValue);
+        console.log('old value : ', oldValue);
+        if (newValue.length > 2) {
+          resetSelf();
+        }
+        if (newValue.length === 1) {
+          setSelf([
+            ...newValue,
+            {
+              content: 'salut',
+              _id: crypto.randomUUID(),
+              edit: false,
+              done: true,
+            },
+          ]);
+        }
+      });
+    },
+  ],
 });
 
 export const filterState = atom({
