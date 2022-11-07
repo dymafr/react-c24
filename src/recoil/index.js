@@ -1,8 +1,9 @@
 import { atom, selector, selectorFamily } from 'recoil';
+import { getTodoRequest, getTodosRequest } from '../apis';
 
 export const todosState = atom({
   key: 'todosState',
-  default: [],
+  default: getTodosRequest(),
 });
 
 export const filterState = atom({
@@ -49,10 +50,7 @@ export const selectTodosData = selector({
 
 export const selectTodoDetails = selectorFamily({
   key: 'selectTodoDetails',
-  get:
-    (_id) =>
-    ({ get }) => {
-      const todos = get(todosState);
-      return _id ? todos.find((t) => t._id === _id) : null;
-    },
+  get: (_id) => async () => {
+    return _id && getTodoRequest(_id);
+  },
 });

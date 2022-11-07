@@ -2,6 +2,7 @@ import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import FilterTodo from './components/FilterTodo';
 import TodoData from './components/TodoData';
+import { Suspense } from 'react';
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
           <FilterTodo />
         </h1>
         <AddTodo />
-        <TodoList />
-        <TodoData />
+        <Suspense>
+          <TodoList />
+          <TodoData />
+        </Suspense>
       </div>
     </div>
   );
